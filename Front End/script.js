@@ -1,3 +1,5 @@
+const API_BASE = "https://telephone-backend-1.onrender.com";
+
 const form = document.getElementById("postForm");
 const liste = document.getElementById("liste-posts");
 
@@ -6,7 +8,7 @@ form.addEventListener("submit", async (e) => {
   const data = Object.fromEntries(new FormData(form));
 
   try {
-    await fetch("https://telephone-backend-1.onrender.com", {
+    await fetch(`${API_BASE}/api/posts`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data),
@@ -21,22 +23,17 @@ form.addEventListener("submit", async (e) => {
 });
 
 async function chargerPosts() {
-  const loader = document.getElementById('loader');
-  loader.style.display = 'block';
   try {
-    const res = await fetch("https://telephone-backend-1.onrender.com");
+    const res = await fetch(`${API_BASE}/api/posts`);
     const posts = await res.json();
 
-    loader.style.display = 'none';
-
     if (posts.length === 0) {
-      liste.innerHTML = `<h2 class="Aucun">Aucun numéro de téléphone partagé pour le moment 😕</h2>
-                         <h3>Sois le premier à en publier un !</h3>`;
+      liste.innerHTML = `<h3 style="color:#666;text-align:center;">Aucun numéro partagé pour le moment.</h3>`;
       return;
     }
 
     liste.innerHTML = posts.map(p => `
-      <div style="border:1px solid #ccc;padding:10px;margin:10px;">
+      <div style="border:1px solid #ccc;padding:10px;margin:10px;border-radius:8px;">
         <strong>${p.numero}</strong> – <em>${p.emission}</em><br>
         🎁 Gain : ${p.gain}<br>
         ⏳ Expire le : ${new Date(p.dateExpiration).toLocaleDateString()}<br>
@@ -44,11 +41,9 @@ async function chargerPosts() {
       </div>
     `).join('');
   } catch (err) {
-    loader.style.display = 'none';
     console.error("Erreur lors du chargement des posts :", err);
+    liste.innerHTML = `<h3 style="color:#900;">Impossible de charger les numéros.</h3>`;
   }
 }
-
-
 
 chargerPosts();
