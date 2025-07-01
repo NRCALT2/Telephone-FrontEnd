@@ -6,7 +6,7 @@ form.addEventListener("submit", async (e) => {
   const data = Object.fromEntries(new FormData(form));
 
   try {
-    await fetch("http://localhost:3000/api/posts", {
+    await fetch("https://telephone-backend-1.onrender.com", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data),
@@ -24,7 +24,7 @@ async function chargerPosts() {
   const loader = document.getElementById('loader');
   loader.style.display = 'block';
   try {
-    const res = await fetch("http://localhost:3000/api/posts");
+    const res = await fetch("https://telephone-backend-1.onrender.com");
     const posts = await res.json();
 
     loader.style.display = 'none';
