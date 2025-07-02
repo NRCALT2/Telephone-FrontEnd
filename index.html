@@ -7,39 +7,38 @@
   <link rel="stylesheet" href="style.css">
   <title>Numéro à Gagner</title>
 </head>
-<body>
+<body class="dark">
 <header>
-  <h1 style="display:inline-block; vertical-align:middle;">📞 Numéros de jeux TV partagés</h1>
+  <h1>📞 Numéros de jeux TV partagés</h1>
   <button class="toggle-theme" onclick="toggleTheme()">🌓 Thème</button>
 </header>
 
-
-  <form id="postForm">
-    <input type="text" name="numero" placeholder="Numéro de téléphone de l'émission" required>
-    <input type="text" name="emission" placeholder="Nom de l'émission" required>
-    <input type="text" name="gain" placeholder="Gain (voyage, argent...)" required>
-    <input type="date" name="dateExpiration" placeholder="Date d'expiration" required>
-    <textarea name="commentaire" placeholder="Informations en plus (facultatif)"></textarea>
-    <button type="submit">Publier</button>
-  </form>
+<form id="postForm">
+  <input type="text" name="numero" placeholder="Numéro de téléphone de l'émission" required>
+  <input type="text" name="emission" placeholder="Nom de l'émission" required>
+  <input type="text" name="gain" placeholder="Gain (voyage, argent...)" required>
+  <input type="date" name="dateExpiration" placeholder="Date d'expiration" required>
+  <textarea name="commentaire" placeholder="Informations en plus (facultatif)"></textarea>
+  <button type="submit">Publier</button>
+</form>
 
 <div id="loader" style="text-align:center; display:none;">Chargement… ⏳</div>
 
-  <h2>📋 Liste des numéros partagés</h2>
-  <div id="liste-posts"></div>
+<h2>📋 Liste des numéros partagés</h2>
+<div id="liste-posts"></div>
 
-  <script src="script.js" defer></script>
-  <script>
+<script>
   function toggleTheme() {
-    document.body.classList.toggle("dark");
-    localStorage.setItem("theme", document.body.classList.contains("dark") ? "dark" : "light");
+    const body = document.body;
+    body.classList.toggle("light");
+    localStorage.setItem("theme", body.classList.contains("light") ? "light" : "dark");
   }
 
-  // Appliquer thème sauvegardé
-  if (localStorage.getItem("theme") === "dark") {
-    document.body.classList.add("dark");
+  // Appliquer thème sauvegardé (par défaut sombre)
+  if (localStorage.getItem("theme") === "light") {
+    document.body.classList.add("light");
   }
 </script>
-
+<script src="script.js"></script>
 </body>
 </html>
