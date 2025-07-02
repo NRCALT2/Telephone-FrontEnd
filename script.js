@@ -41,6 +41,9 @@ async function chargerPosts() {
     liste.innerHTML = posts.map(p => `
       <div style="border:1px solid #ccc;padding:10px;margin:10px;" class="post">
         <h2>📞 numéro : ${p.numero}</h2>
+        <h3 class="higlight">💸 Prix : ${p.prix}</h3>
+        <h3 class="higlight">💬 Mot-clé : ${p.mot}</h3>
+        <h3>📨 Nombre de messages à envoyer : ${p.nbMessage || 1}</h3>
         <h3>🎁 Gain : ${p.gain}</h3>
         <h3 class="emission">📺 Emission : ${p.emission}</h3>
         <br>
