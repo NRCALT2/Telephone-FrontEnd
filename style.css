@@ -47,9 +47,13 @@ h2 {
   color: var(--text);
 }
 
-.emission, .Aucun, .aucun2 {
+.emission, .Aucun{
   text-align: center;
   color: #bbbbbb;
+}
+
+.Aucun2{
+  text-align: center;
 }
 
 .toggle-theme {
