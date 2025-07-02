@@ -89,6 +89,12 @@ input, textarea, button {
   color: var(--text);
 }
 
+.highlight {
+  color: rgb(255, 158, 88);
+  font-weight: bold;
+}
+
+
 textarea {
   resize: vertical;
   min-height: 60px;
